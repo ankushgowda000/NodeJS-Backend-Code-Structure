@@ -17,7 +17,7 @@ app.post('/addMoney', [auth(), validator('addMoney')], bankController.addMoney)
 
 app.post('/checkBalance', auth(), bankController.checkBalance)
 
-app.post('/saveUser', [auth(), validator('saveUser')], bankController.saveUser)
+app.post('/saveUser', [auth(), validator('saveUser')], bankController.create())
 
 app.post('/userLogin', validator('userLogin'), bankController.userLogin)
 
