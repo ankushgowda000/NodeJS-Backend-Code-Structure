@@ -6,24 +6,19 @@ const addMoney = async (request) => {
     const { currentUser, amount } = request;
     console.log(currentUser)
     let user = await bankRepository.getById(currentUser.userId);
-    if(amount>0){
+    if (amount > 0) {
         var updatedBalance = user.balance + amount;
         return await bankRepository.update({ id: currentUser.userId, balance: updatedBalance })
     }
-    else{
+    else {
         throw new Error("Please Enter Valid Amount")
     }
 }
 
 const checkBalance = async (request) => {
-    const { currentUser } = request;
-    const user = await bankRepository.getById(currentUser.userId);
-    return {"Available Balance ":user.balance};
-}
-
-const saveUser = async (request) => {
-    const user = await bankRepository.create(request);
-    console.log(user)
+    const { currentUser: { userId } } = request;
+    const user = await bankRepository.getById(userId);
+    return { "Available Balance ": user.balance };
 }
 
 const userLogin = async (request) => {
@@ -55,7 +50,6 @@ module.exports = {
 
     addMoney,
     checkBalance,
-    saveUser,
     userLogin,
     withdraw
 }

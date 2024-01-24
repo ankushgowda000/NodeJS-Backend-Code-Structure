@@ -22,16 +22,6 @@ const checkBalance = async (req, res, next) => {
     }
 }
 
-const saveUser = async (req, res, next) => {
-    try {
-        const request = req.body;
-        const result = await bankService.saveUser(request);
-        res.send(result);
-    } catch (error) {
-        next(error);
-    }
-};
-
 const userLogin = async (req, res, next) => {
     try {
         let request = req.body;
@@ -59,7 +49,6 @@ module.exports = {
 
     addMoney,
     checkBalance,
-    saveUser,
     userLogin,
     withdraw
 }
